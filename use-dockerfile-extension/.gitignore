@@ -1,0 +1,22 @@
+# IDE Files
+.idea/
+.vs/
+.vscode/
+
+# C
+
+# Java
+
+# JavaScript/TypeScript
+.npmrc
+**/node_modules/
+
+# Miscellaneous
+.dccache
+
+# OS Files
+.DS_Store
+
+# Python
+
+# Ruby

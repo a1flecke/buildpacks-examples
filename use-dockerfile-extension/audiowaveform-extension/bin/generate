@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+set -eo pipefail
+
+# 1. GET ARGS
+output_dir=$CNB_OUTPUT_DIR
+
+# 2. GENERATE build.Dockerfile
+cat >> "${output_dir}/build.Dockerfile" <<EOL
+ARG base_image
+FROM \${base_image}
+
+USER root
+
+RUN apt-get update \
+    && apt-get install -y software-properties-common \
+    && add-apt-repository ppa:chris-needham/ppa \
+    && apt-get update \
+    && apt-get install -y audiowaveform ffmpeg \
+    && apt-get clean
+
+ARG user_id
+USER \${user_id}
+EOL
+
+# 3. GENERATE run.Dockerfile
+cat >>"${output_dir}/run.Dockerfile" <<EOL
+ARG base_image
+FROM \${base_image}
+
+USER root
+RUN cp /etc/os-release /usr/lib/os-release
+RUN apt-get update \
+    && apt-get install -y software-properties-common \
+    && add-apt-repository ppa:chris-needham/ppa \
+    && apt-get update \
+    && apt-get install -y audiowaveform ffmpeg \
+    && apt-get clean
+
+ARG user_id
+USER \${user_id}
+EOL
