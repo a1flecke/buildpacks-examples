@@ -19,14 +19,14 @@ fi
 
 docker pull $1
 
-docker tag $1 $2
+# docker tag $1 $2
 
-docker push $2
+# docker push $2
 
 pack config experimental true
 
 time pack build --verbose --timestamps tryit \
-      --builder $2 \
+      --builder $1 \
       --buildpack paketo-buildpacks/ruby \
       --default-process run \
       --env BP_REQUIRES=audiowaveform \

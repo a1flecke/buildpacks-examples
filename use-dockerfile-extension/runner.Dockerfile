@@ -1,4 +1,4 @@
-FROM paketobuildpacks/run-jammy-full:0.0.147
+FROM paketobuildpacks/run-jammy-full:latest
 USER root
 RUN apt-get update \
     && apt-get install -y software-properties-common \

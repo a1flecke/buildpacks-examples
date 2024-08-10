@@ -1,0 +1,11 @@
+{
+  "name": "my-custom-app",
+  "version": "0.0.0",
+  "description": "this is an example app",
+  "main": "index.js",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "mocha": "^10.7.3"
+  }
+}
