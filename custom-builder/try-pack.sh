@@ -5,5 +5,6 @@
 cd my-project
 time pack build --verbose --timestamps tryit-nodejs \
       --builder my-builder-builder \
-      --buildpack paketo-buildpacks/nodejs 
+      --buildpack paketo-buildpacks/nodejs  \
+      --default-process start
 cd ../
