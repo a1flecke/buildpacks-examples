@@ -10,7 +10,7 @@ description = "Tiny base image (Ubuntu Jammy Jellyfish build image, distroless-l
   run-image-mirrors = []
 
 [[targets]]
-  arch = "amd64"
+  arch = "x86-64"
   os = "linux"
 
 [[targets]]

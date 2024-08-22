@@ -12,12 +12,26 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: build and push builder build image
-      run: |
-          cd custom-builder
-          docker build -t a1flecke/builder-build-image-with-yarn .
-          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_TOKEN }}
-          docker push a1flecke/builder-build-image-with-yarn
+    - name: login to Dockerhub
+      uses: docker/login-action@v3.3.0
+      with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_TOKEN }}
+
+    - # Add support for more platforms with QEMU (optional)
+      # https://github.com/docker/setup-qemu-action
+      name: Set up QEMU
+      uses: docker/setup-qemu-action@v3.6.1
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3.6.1
+
+    - name: Build and push
+      uses: docker/build-push-action@v6.7.0
+      with:
+        push: true
+        tags: a1flecke/builder-build-image-with-yarn
+        file: ./custom-builder/Dockerfile
 
     - name: setup pack
       uses: buildpacks/github-actions/setup-pack@v5.7.3
@@ -25,5 +39,4 @@ jobs:
     - name: Build and push builder
       run: |
           cd custom-builder
-          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_TOKEN }}
           pack builder create a1flecke/builder-with-yarn --config ./builder.toml --publish
