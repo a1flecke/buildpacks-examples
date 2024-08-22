@@ -1,0 +1,27 @@
+name: Create and Push Builder
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: build and push builder build image
+      run: |
+          cd custom-builder
+          docker build -t a1flecke/builder-build-image-with-yarn .
+          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+          docker push a1flecke/builder-build-image-with-yarn
+
+    - name: build and push builder
+      uses: buildpacks/github-actions/setup-pack@v5.0.0
+      run: |
+          cd custom-builder
+          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+          pack builder create a1flecke/builder-with-yarn --config ./builder.toml --publish
