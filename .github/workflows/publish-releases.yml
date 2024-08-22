@@ -19,8 +19,10 @@ jobs:
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
           docker push a1flecke/builder-build-image-with-yarn
 
-    - name: build and push builder
+    - name: setup pack
       uses: buildpacks/github-actions/setup-pack@v5.0.0
+
+    - name: Build and push b uilder
       run: |
           cd custom-builder
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
