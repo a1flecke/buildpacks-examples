@@ -4,11 +4,11 @@ description = "Tiny base image (Ubuntu Jammy Jellyfish build image, distroless-l
   version = "0.20.1"
 
 [build]
-image = "a1flecke/builder-build-image-with-yarn"
+image = "a1flecke/my-builder-builder"
 
 [run]
 [[run.images]]
-image = "index.docker.io/paketobuildpacks/run-jammy-tiny:latest"
+image = "a1flecke/my-builder-run"
 mirrors = []
 
 [[targets]]
