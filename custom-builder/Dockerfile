@@ -1,4 +1,7 @@
 FROM paketobuildpacks/build-jammy-tiny:latest
+ARG CNB_USER_ID=1001
+ARG CNB_GROUP_ID=1000
+ARG STACK_ID=o.buildpacks.stacks.jammy.tiny
 USER root
 RUN mkdir -p /opt/yarn
 WORKDIR /opt/yarn
