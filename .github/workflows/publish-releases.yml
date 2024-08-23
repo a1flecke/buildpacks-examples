@@ -36,7 +36,7 @@ jobs:
     - name: setup pack
       uses: buildpacks/github-actions/setup-pack@v5.7.3
       with:
-        pack-version: '0.35.1'
+        pack-version: '0.34.2'
 
     - name: Build and push builder
       run: |
