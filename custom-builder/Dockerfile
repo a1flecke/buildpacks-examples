@@ -15,5 +15,4 @@ RUN ls -al
 RUN tar -xvzf yarn.tgz
 RUN rm -rf yarn.tgz
 RUN export PATH=/opt/yarn/yarn-v1.22.22/bin:$PATH
-ENV CNB_USER_ID=1000
-USER ${CNB_USER_ID}
+USER "${CNB_USER_ID}:${CNB_GROUP_ID}"
