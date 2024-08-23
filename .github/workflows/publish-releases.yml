@@ -32,6 +32,7 @@ jobs:
         push: true
         tags: a1flecke/builder-build-image-with-yarn
         file: ./custom-builder/Dockerfile
+        platforms: linux/amd64,linux/arm64
 
     - name: setup pack
       uses: buildpacks/github-actions/setup-pack@v5.7.3
