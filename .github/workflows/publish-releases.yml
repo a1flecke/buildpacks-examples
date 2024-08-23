@@ -41,4 +41,5 @@ jobs:
     - name: Build and push builder
       run: |
           cd custom-builder
+          docker pull paketobuildpacks/run-jammy-tiny
           pack builder create a1flecke/builder-with-yarn:1.0.0 --config ./builder.toml --publish
