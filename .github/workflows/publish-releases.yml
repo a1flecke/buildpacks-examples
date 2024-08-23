@@ -42,4 +42,5 @@ jobs:
       run: |
           cd custom-builder
           docker pull paketobuildpacks/run-jammy-tiny
+          docker inspect paketobuildpacks/run-jammy-tiny
           pack builder create a1flecke/builder-with-yarn:1.0.0 --config ./builder.toml --publish
