@@ -43,4 +43,4 @@ jobs:
           cd custom-builder
           docker pull paketobuildpacks/run-jammy-tiny
           pack config experimental true
-          pack builder create a1flecke/builder-with-yarn:1.0.0 --config ./builder.toml --publish
+          pack builder create a1flecke/builder-with-yarn:1.0.0 --config ./builder.toml --publish --verbose
