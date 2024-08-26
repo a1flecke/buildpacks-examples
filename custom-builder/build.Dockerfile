@@ -16,6 +16,13 @@ ENV CNB_GROUP_ID=${cnb_gid}
 RUN groupadd cnb --gid ${CNB_GROUP_ID} && \
   useradd --uid ${CNB_USER_ID} --gid ${CNB_GROUP_ID} -m -s /bin/bash cnb
 
+# Install yarn
+RUN mkdir -p /opt/yarn
+WORKDIR /opt/yarn
+RUN curl -L --output yarn.tgz https://github.com/yarnpkg/yarn/releases/download/v1.22.22/yarn-v1.22.22.tar.gz
+RUN tar -xvzf yarn.tgz
+RUN rm -rf yarn.tgz
+RUN export PATH=/opt/yarn/yarn-v1.22.22/bin:$PATH
 # Set user and group
 USER ${CNB_USER_ID}:${CNB_GROUP_ID}
 
