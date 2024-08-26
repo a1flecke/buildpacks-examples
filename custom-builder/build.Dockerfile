@@ -16,6 +16,8 @@ ENV CNB_GROUP_ID=${cnb_gid}
 RUN groupadd cnb --gid ${CNB_GROUP_ID} && \
   useradd --uid ${CNB_USER_ID} --gid ${CNB_GROUP_ID} -m -s /bin/bash cnb
 
+RUN apt-get update && apt-get install -y curl && apt-get clean
+
 # Install yarn
 RUN mkdir -p /opt/yarn
 WORKDIR /opt/yarn
